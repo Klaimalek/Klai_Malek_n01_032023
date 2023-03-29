@@ -39,6 +39,7 @@ img {
   overflow: hidden;
   margin: 30px;
 }
+
 .header-logo {
     float: left;
 }
@@ -74,13 +75,24 @@ img {
 }
 
 @media screen and (max-width: 768px) {
+  .topnav{
+  
+    margin-bottom: 0px;
+    
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .topnav .header-logo .image{
+    width: 50%;
+  }
   
   .topnav a {display: none;}
   .topnav a.icon {
-    float: right;
-    display: block;
+    padding-top: 0px;
+    padding-right: 0px;
+    display: inline;
     color: #ff0000;
-    
   }
   
 }
@@ -97,16 +109,15 @@ img {
     display: block;
     text-align: left;
   }
+  
 }
-
-
 
  @media screen and (max-width: 540px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
+   /* margin-top: -15px;*/
   }
 } 
 
@@ -121,8 +132,8 @@ main {
   border-radius: 2rem;
   text-align: justify;
 
-
 }
+
 
 .modal-btn {
   font-size: 145%;
@@ -487,10 +498,12 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
 @media screen and (max-width: 800px) {
-  .hero-section {
+  /*.hero-section {
     display: block;
     box-shadow: unset;
+    border: 2px solid;
   }
   .hero-content {
     background: #fff;
@@ -504,27 +517,75 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 2rem;
     white-space: normal;
   }
   .hero-text {
     width: unset;
+    width: 100%;
     font-size: 1.5rem;
+    font-size: 13px;
+    white-space:normal;
   }
   .hero-img img {
     border-radius: 10px;
-    margin-top: 40px;
+    margin-top: 10px;
   }
   .hero-section > .btn-signup {
     display: block;
     margin: 32px auto 10px;
-    padding: 12px 35px;
+    
   }
   .copyrights {
     margin-top: 50px;
     text-align: center;
+    
   }
+  
+  */
+  .hero-section{
+    position: relative;
+    display: flex;
+    box-shadow: unset;
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-content{
+    background: #fff;
+    color: #000;
+    padding-top: 0px;
+    padding-left: 0px;
+    width: 100%;
+    
+  }
+  .hero-content::after {
+    content: unset;
+  }
+ .hero-headline{
+  font-size: 35px;
+ }
+ .hero-text{
+  font-size: 13px;
+  margin-top: 15px;
+  white-space:normal;
+  width: 90%;
+ }
+  .hero-img{
+    border-radius: 0px 8px 8px 0px;
+  }
+ .btn-signup {
+  position: absolute;
+  top:480px;
+  left: 20%;
+  
+ }
+ .copyrights {
+  text-align: center;
+  margin-top: 0;
+ }
 }
+
+
 
 @keyframes modalopen {
   from {
@@ -535,4 +596,5 @@ footer {
     opacity: 1;
   }
 }
+
 
