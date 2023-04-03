@@ -27,6 +27,12 @@ p {
   margin-bottom: 0;
   padding: 0.5vw;
 }
+/*  message d'erreur*/
+.error{
+  color: #f00;
+  font-size: small;
+  display: none;
+}
 
 img {
   padding-right: 1rem;
