@@ -8,6 +8,7 @@ function editNav() {
 }
 
 // DOM Elements
+const btn-submit = document.getElementsByClassName('btn-submit');
 const modalbg = document.querySelector('.bground');
 const modalBtn = document.querySelectorAll('.modal-btn');
 //récupérer les données de formulaire
@@ -22,18 +23,17 @@ const LastnameIputEvent = document.getElementById('last');
 const InputMail = document.getElementById('email');
 const Inputbirthdate = document.getElementById('birthdate');
 const Inputquantity = document.getElementById('quantity');
-const Inputlocation = document.getElementsByClassName('checkbox-input');
+const InputRadio = document.querySelectorAll('checkbox-input');
+
 // récupérer les messages d'erreurs
 const MessageErreur = document.getElementById('error-alphabet');
-
-let validInput = { // Quand toutes les valeurs sont à 1, formIsTtue passe à true.
-  
-  symbol : 0,
-  mail : 0,
-  password : 0,
-
-}
-
+const MessageErreurLastname = document.getElementById('error-alphabet-lastname');
+const MessageErreurMail = document.getElementById('error-mail');
+const MessageErreurDate = document.getElementById('error-date');
+const MessageErreurAge = document.getElementById('error-age');
+const MessageErreurNumber = document.getElementById('error-number');
+const MessageErreurCheck = document.getElementById('error-condition');
+const MessageErreurRadio = document.getElementById('error-radio');
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener('click', launchModal));
 
@@ -45,10 +45,8 @@ function launchModal() {
 
 modalClose[0].addEventListener('click', closeModal);
 
-
 function closeModal() {
   modalbg.style.display = 'none';
-  
 }
 // vérification les champs de saisie fr formulaire inscription
 /*function ValidationInscription ()
@@ -94,41 +92,105 @@ if(Inputlocation.value == "")
 return true;
 }
 */
-// vérification ne champ du prénom
 
-let alphabet = [...Array(26)].map((_, i) => String.fromCharCode(i + 97));
+// vérification de champ de saisie prenom
+nameInputEvent.addEventListener('input', () => {
+  const nameInputValue = nameInputEvent.value;
+  if (nameInputValue.length <= 2) {
+    MessageErreur.style.display = 'inline';
+    nameInputEvent.focus();
+    return false;
+  } else if (nameInputValue.length >= 2) {
+    MessageErreur.style.display = 'none';
+    nameInputEvent.focus();
+    return true;
+  }
+});
+// vérification de champ de saisie nom
+LastnameIputEvent.addEventListener('input', () => {
+  const lastnameValue = LastnameIputEvent.value;
+  if (lastnameValue.length <= 2) {
+    MessageErreurLastname.style.display = 'inline';
+    LastnameIputEvent.focus();
+    return false;
+  } else if (lastnameValue.length >= 2) {
+    MessageErreurLastname.style.display = 'none';
+    LastnameIputEvent.focus();
 
-nameInputEvent.addEventListener('input',() => {
-  
-  const nameValue = nameInputEvent.value;
-   if (nameValue.search(alphabet)=== 0) {
-    nameInputEvent.style.display="none";
     return true;
-   }
-   else if (nameValue.search(alphabet)=== -1){
-    nameInputEvent.style.display = "inline";
-    return false;
-   }
-})
-// vérification ne champ du nom
-LastnameIputEvent.addEventListener('input',() => {
-  
-  const LastnameValue = LastnameIputEvent.value;
-   if (LastnameValue.search(alphabet)=== 0) {
-    MessageErreur.style.display="inline";
-    return true;
-   }
-   else if (LastnameValue.search(alphabet)=== -1){
-    MessageErreur.style.display = "inline";
-    return false;
-   }
-})
+  }
+});
 // vérification l'adreese email
-InputMail.addEventListener('input',() =>{
-  const at = InputMail.value.indexOf("@");
-  if ( at == -1){
-    alert ("votre email est non valide");
+InputMail.addEventListener('input', () => {
+  const at = InputMail.value.indexOf('@');
+  if (at == -1) {
+    MessageErreurMail.style.display = 'inline';
     InputMail.focus();
     return false;
+  } else {
+    MessageErreurMail.style.display = 'none';
+    InputMail.focus();
+    return true;
   }
-} )
+});
+
+//vérification de date de naissance
+Inputbirthdate.addEventListener('input', () => {
+  inputdateValue = Inputbirthdate.value;
+  var dt = new Date(inputdateValue).getFullYear();
+  var yearNow = new Date().getFullYear();
+  var d_reg = /^[0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4}$/;
+  inputdateValue = inputdateValue.split('-').reverse().join('/');
+ 
+  if (d_reg.test(inputdateValue)) {
+    MessageErreurDate.style.display = 'none';
+    //calcul l'age
+    let dateDiff = yearNow - dt;
+    if (dateDiff < 18) {
+      MessageErreurAge.style.display ='inline';
+      return false;
+    } else {
+      MessageErreurAge.style.display ='none';
+    }
+    return true;
+  } else {
+    // si aucune date n’est saisie affichage du message qui demande de le faire.
+    MessageErreurDate.style.display = 'inline';
+    return false;
+  }
+});
+// vérification de champs de saisie qauntité
+
+Inputquantity.addEventListener('input',() =>{
+  InputQuantityValue = Inputquantity.value;
+   let input = typeof(InputQuantityValue);
+  if(  input === Number){
+    MessageErreurNumber.style.display ='none';
+    return true;
+  }
+  else{
+    
+    MessageErreurNumber.style.display ='inline';
+    return false;
+  }
+})
+// vérification de radio
+InputRadio.forEach((val) => val.addEventListener('cahnge',functionSelection));
+
+  function functionSelection() {
+  
+  var selected = false;
+  for ( var i =0; i< InputRadio.length;i++) {
+    if (InputRadio[i].checked) {
+      selected = true;
+      break;
+    } 
+  }
+  if (selected){
+    alert("validation suceessful")
+    console.log("validation suceessful");
+  }
+  else{
+    alert("not good")
+  }
+  }
