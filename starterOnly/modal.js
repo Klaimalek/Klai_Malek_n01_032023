@@ -11,9 +11,10 @@ function editNav() {
 const msg = document.getElementById('.message');
 const modalbg = document.querySelector('.bground');
 const successModal = document.getElementById('bground-success');
+const sucessModalClose = document. getElementById('close-modalsucess');
 const modalBtn = document.querySelectorAll('.modal-btn');
 const confirmationValidation = document.getElementById('confirm-modal');
-const confirmationCloseBtn = document.querySelector('#btn-closed'); // bouton "fermer"
+const sucessModelCloseBtn = document.querySelector('#btn-closed'); // bouton "fermer"
 //récupérer les données de formulaire
 const formData = document.querySelectorAll('.formData');
 // récupérer le span close
@@ -28,7 +29,6 @@ const Inputbirthdate = document.getElementById('birthdate');
 const Inputquantity = document.getElementById('quantity');
 const Inputlocation = document.querySelectorAll('input[name="location"]');
 const InputCondition = document.getElementById('checkbox1');
-const btns = document.getElementsByClassName('btn-submit');
 
 // récupérer les messages d'erreurs
 const MessageErreur = document.getElementById('error-alphabet');
@@ -54,7 +54,7 @@ modalBtn.forEach((btn) => btn.addEventListener('click', launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = 'block';
-  //confirmationValidation.style.display = 'none';
+  
 }
 
 //close modal
@@ -62,56 +62,11 @@ modalClose[0].addEventListener('click', closeModal);
 
 function closeModal() {
   modalbg.style.display = 'none';
-  confirmationValidation.style.display = 'none';
+  successModal .style.display ='none';
 }
 
 // ------------ element pour l'envoi du formulaire ------------------------
 const form = document.querySelector('form[name="reserve"]');
-
-// vérification les champs de saisie fr formulaire inscription
-/*function ValidationInscription ()
-{
-
-
-if(InputName.value == "")
-{
-  alert("Mettez votre Nom.");
-  InputName.focus();
-  return false;
-}
-if(InputLastName.value == "")
-{
-  alert("Mettez votre Prenom.");
-  InputLastName.focus();
-  return false;
-}
-if(InputMail.value == "")
-{
-  alert("Mettez votre adresse emaail.");
-  InputMail.focus();
-  return false;
-}
-if(Inputbirthdate.value == "")
-{
-  alert("Mettez votre date de naissance.");
-  Inputbirthdate.focus();
-  return false;
-}
-if(Inputquantity.value == "")
-{
-  alert("Champs obligatoire");
-  Inputquantity.focus();
-  return false;
-}
-if(Inputlocation.value == "")
-{
-  alert("Veuillez choisir un pays.");
-  Inputlocation.focus();
-  return false;
-}
-return true;
-}
-*/
 
 // validation de prénom
 nameInputEvent.addEventListener('input', function () {
@@ -146,7 +101,7 @@ const validLastname = function (LastnameIputEvent) {
     return true;
   }
 };
-// validation l'adreese email
+// validation de l'adreese email
 
 InputMail.addEventListener('input', function () {
   validMail(this);
@@ -256,7 +211,7 @@ const validation = function () {
   isOK.push(validCondition(InputCondition));
 
   if (isOK.includes(false)) {
-    confirmationValidation.style.display = 'none';
+    successModal.style.display = 'none';
   } else {
     form.style.display = 'none';
     modalbg.style.display = 'none';
@@ -276,5 +231,20 @@ form.addEventListener('submit', function (e) {
 });
 
 // ------- Fermer le formulaire avec le message de validation ---------
+
+//close modal insciption
+
+sucessModelCloseBtn.addEventListener('click', function () {
+  closeModalsucess(this);
+});
+const closeModalsucess = function(){
+  successModal .style.display='none';
+}
+
+sucessModalClose.addEventListener('click', closeModal);
+
+function closeModal() {
+  successModal .style.display ='none';
+}
 
 //document.querySelector("btn-closed").addEventListener("click", closeModal);
