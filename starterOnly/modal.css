@@ -1,5 +1,5 @@
 :root {
-  --font-default: "DM Sans", Arial, Helvetica, sans-serif;
+  --font-default: 'DM Sans', Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
   --modal-duration: 0.8s;
 }
@@ -16,11 +16,10 @@ body {
   margin-right: auto;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
+  background-image: url('background.png');
   font-family: var(--font-default);
   font-size: 18px;
   max-width: 1300px;
- 
 }
 
 p {
@@ -28,7 +27,7 @@ p {
   padding: 0.5vw;
 }
 /*  message d'erreur*/
-.error{
+.error {
   color: #f00;
   font-size: small;
   display: none;
@@ -47,10 +46,10 @@ img {
 }
 
 .header-logo {
-    float: left;
+  float: left;
 }
 .main-navbar {
-    float: right;
+  float: right;
 }
 .topnav a {
   float: left;
@@ -81,30 +80,32 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav{
-  
+  .topnav {
     margin-bottom: 0px;
-    
+
     display: flex;
     justify-content: space-between;
   }
-  
-  .topnav .header-logo .image{
+
+  .topnav .header-logo .image {
     width: 50%;
   }
-  
-  .topnav a {display: none;}
+
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     padding-top: 0px;
     padding-right: 0px;
     display: inline;
     color: #ff0000;
   }
-  
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -115,17 +116,18 @@ img {
     display: block;
     text-align: left;
   }
-  
 }
 
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
-   /* margin-top: -15px;*/
+    /* margin-top: -15px;*/
   }
-} 
+}
 
 main {
   font-size: 130%;
@@ -137,9 +139,7 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
 }
-
 
 .modal-btn {
   font-size: 145%;
@@ -184,6 +184,17 @@ main {
 }
 
 .bground {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(26, 39, 156, 0.4);
+}
+.bground-success {
   display: none;
   position: fixed;
   z-index: 1;
@@ -246,10 +257,10 @@ input {
   opacity: 0;
   transition: 0.3s;
 }
-.formData[data-error-visible="true"]::after {
+.formData[data-error-visible='true']::after {
   opacity: 1;
 }
-.formData[data-error-visible="true"] .text-control {
+.formData[data-error-visible='true'] .text-control {
   border: 2px solid #e54858;
 }
 /* 
@@ -281,7 +292,7 @@ input[data-error]::after {
 }
 .checkbox-label .checkbox-icon::after,
 .checkbox2-label .checkbox-icon::after {
-  content: "";
+  content: '';
   width: 13px;
   height: 13px;
   background-color: #279e7a;
@@ -336,7 +347,7 @@ input[data-error]::after {
 .close:after {
   position: absolute;
   left: 15px;
-  content: " ";
+  content: ' ';
   height: 33px;
   width: 3px;
   background-color: #fff;
@@ -377,7 +388,7 @@ input[data-error]::after {
 /* Style the arrow inside the select element: */
 .select-selected:after {
   position: absolute;
-  content: "";
+  content: '';
   top: 10px;
   right: 13px;
   width: 11px;
@@ -449,7 +460,7 @@ input[data-error]::after {
   min-width: 424px;
 }
 .hero-content::after {
-  content: "";
+  content: '';
   width: 100%;
   height: 100%;
   background: #232323;
@@ -549,49 +560,45 @@ footer {
   }
   
   */
-  .hero-section{
+  .hero-section {
     position: relative;
     display: flex;
     box-shadow: unset;
     flex-direction: column;
     width: 100%;
   }
-  .hero-content{
+  .hero-content {
     background: #fff;
     color: #000;
     padding-top: 0px;
     padding-left: 0px;
     width: 100%;
-    
   }
   .hero-content::after {
     content: unset;
   }
- .hero-headline{
-  font-size: 35px;
- }
- .hero-text{
-  font-size: 13px;
-  margin-top: 15px;
-  white-space:normal;
-  width: 90%;
- }
-  .hero-img{
+  .hero-headline {
+    font-size: 35px;
+  }
+  .hero-text {
+    font-size: 13px;
+    margin-top: 15px;
+    white-space: normal;
+    width: 90%;
+  }
+  .hero-img {
     border-radius: 0px 8px 8px 0px;
   }
- .btn-signup {
-  position: absolute;
-  top:480px;
-  left: 20%;
-  
- }
- .copyrights {
-  text-align: center;
-  margin-top: 0;
- }
+  .btn-signup {
+    position: absolute;
+    top: 480px;
+    left: 20%;
+  }
+  .copyrights {
+    text-align: center;
+    margin-top: 0;
+  }
 }
-
-
 
 @keyframes modalopen {
   from {
@@ -602,5 +609,3 @@ footer {
     opacity: 1;
   }
 }
-
-

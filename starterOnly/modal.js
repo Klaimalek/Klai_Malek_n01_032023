@@ -8,29 +8,33 @@ function editNav() {
 }
 
 // DOM Elements
-
+const msg = document.getElementById('.message');
 const modalbg = document.querySelector('.bground');
+const successModal = document.getElementById('bground-success');
 const modalBtn = document.querySelectorAll('.modal-btn');
+const confirmationValidation = document.getElementById('confirm-modal');
+const confirmationCloseBtn = document.querySelector('#btn-closed'); // bouton "fermer"
 //récupérer les données de formulaire
 const formData = document.querySelectorAll('.formData');
 // récupérer le span close
 const modalClose = document.getElementsByClassName('close');
 //récupérer le button c'est partie
-const modalInscription = document.getElementsByClassName('button');
+const modalInscription = document.getElementsByClassName('tn');
 // récupérer les champs de formulaire d'inscription
 const nameInputEvent = document.getElementById('first');
 const LastnameIputEvent = document.getElementById('last');
 const InputMail = document.getElementById('email');
 const Inputbirthdate = document.getElementById('birthdate');
 const Inputquantity = document.getElementById('quantity');
-const InputRadio = document.getElementsByClassName('checkbox-input');
-const InputCondition = document.querySelector('checkbox1');
+const Inputlocation = document.querySelectorAll('input[name="location"]');
+const InputCondition = document.getElementById('checkbox1');
 const btns = document.getElementsByClassName('btn-submit');
 
 // récupérer les messages d'erreurs
 const MessageErreur = document.getElementById('error-alphabet');
 const MessageErreurLastname = document.getElementById(
-  'error-alphabet-lastname');
+  'error-alphabet-lastname'
+);
 const MessageErreurMail = document.getElementById('error-mail');
 const MessageErreurDate = document.getElementById('error-date');
 const MessageErreurAge = document.getElementById('error-age');
@@ -38,25 +42,82 @@ const MessageErreurNumber = document.getElementById('error-number');
 const MessageErreurCondition = document.getElementById('error-condition');
 const MessageErreurRadio = document.getElementById('error-radio');
 // création de la regex email
-const regEmail = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');
+const regEmail = new RegExp(
+  '^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$',
+  'g'
+);
+7;
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener('click', launchModal));
 
 // launch modal form
 function launchModal() {
   modalbg.style.display = 'block';
+  //confirmationValidation.style.display = 'none';
 }
-//close modal
 
+//close modal
 modalClose[0].addEventListener('click', closeModal);
 
 function closeModal() {
   modalbg.style.display = 'none';
+  confirmationValidation.style.display = 'none';
 }
 
-// vérification de champ de saisie prenom
-nameInputEvent.addEventListener('input', () => {
-  
+// ------------ element pour l'envoi du formulaire ------------------------
+const form = document.querySelector('form[name="reserve"]');
+
+// vérification les champs de saisie fr formulaire inscription
+/*function ValidationInscription ()
+{
+
+
+if(InputName.value == "")
+{
+  alert("Mettez votre Nom.");
+  InputName.focus();
+  return false;
+}
+if(InputLastName.value == "")
+{
+  alert("Mettez votre Prenom.");
+  InputLastName.focus();
+  return false;
+}
+if(InputMail.value == "")
+{
+  alert("Mettez votre adresse emaail.");
+  InputMail.focus();
+  return false;
+}
+if(Inputbirthdate.value == "")
+{
+  alert("Mettez votre date de naissance.");
+  Inputbirthdate.focus();
+  return false;
+}
+if(Inputquantity.value == "")
+{
+  alert("Champs obligatoire");
+  Inputquantity.focus();
+  return false;
+}
+if(Inputlocation.value == "")
+{
+  alert("Veuillez choisir un pays.");
+  Inputlocation.focus();
+  return false;
+}
+return true;
+}
+*/
+
+// validation de prénom
+nameInputEvent.addEventListener('input', function () {
+  validName(this);
+});
+const validName = function (nameInputEvent) {
   const nameInputValue = nameInputEvent.value;
   if (nameInputValue.length <= 2) {
     MessageErreur.style.display = 'inline';
@@ -67,9 +128,12 @@ nameInputEvent.addEventListener('input', () => {
     nameInputEvent.focus();
     return true;
   }
+};
+// validation de nom
+LastnameIputEvent.addEventListener('input', function () {
+  validLastname(this);
 });
-// vérification de champ de saisie nom
-LastnameIputEvent.addEventListener('input', () => {
+const validLastname = function (LastnameIputEvent) {
   const lastnameValue = LastnameIputEvent.value;
   if (lastnameValue.length <= 2) {
     MessageErreurLastname.style.display = 'inline';
@@ -81,25 +145,30 @@ LastnameIputEvent.addEventListener('input', () => {
 
     return true;
   }
+};
+// validation l'adreese email
+
+InputMail.addEventListener('input', function () {
+  validMail(this);
 });
-// vérification l'adreese email
-InputMail.addEventListener('input', () => {
-  
-  
+const validMail = function (InputMail) {
   if (regEmail.test(InputMail.value)) {
     MessageErreurMail.style.display = 'none';
     InputMail.focus();
     return true;
-  } else {
+  } else if (!regEmail.test(InputMail.value)) {
     MessageErreurMail.style.display = 'inline';
     InputMail.focus();
     return false;
   }
+};
 
+//validation de date de naissance
+
+Inputbirthdate.addEventListener('input', function () {
+  validBirthday(this);
 });
-
-//vérification de date de naissance
-Inputbirthdate.addEventListener('input', () => {
+const validBirthday = function (Inputbirthdate) {
   inputdateValue = Inputbirthdate.value;
   var dt = new Date(inputdateValue).getFullYear();
   var yearNow = new Date().getFullYear();
@@ -122,48 +191,90 @@ Inputbirthdate.addEventListener('input', () => {
     MessageErreurDate.style.display = 'inline';
     return false;
   }
-});
-// vérification de champs de saisie qauntité
+};
+// validation de champs de saisie qauntité
 
-Inputquantity.addEventListener('input', () => {
+Inputquantity.addEventListener('input', function () {
+  validQuantity(this);
+});
+const validQuantity = function (Inputquantity) {
   InputQuantityValue = Inputquantity.value;
-  if ( isNaN( InputQuantityValue) == true) {
+  if (isNaN(InputQuantityValue) == true) {
     MessageErreurNumber.style.display = 'inline';
-  
+    return false;
   } else {
-    
     MessageErreurNumber.style.display = 'none';
+    return true;
   }
-});
-// vérification de radio
+};
+// validation location
+Inputlocation.forEach((check) =>
+  check.addEventListener('change', function () {
+    validLocation(this);
+  })
+);
 
-for (let i = 0; i < InputRadio.length; i++) {
-  InputRadio[i].addEventListener('change', functionSelection(i));
-}
-
-//InputRadio.forEach((val) => val.addEventListener('change', functionSelection));
-
-function functionSelection(i) {
-  var selected = false;
-  if (InputRadio[i].checked) {
-    selected = true;
+const validLocation = function (Inputlocation) {
+  let itemChecked = 0;
+  Inputlocation.forEach((i) => {
+    if (i.checked) {
+      itemChecked++;
+    }
+  });
+  if (itemChecked === 0) {
+    MessageErreurRadio.style.display = 'inline';
+    return false;
+  } else if (itemChecked !== 0) {
+    MessageErreurRadio.style.display = 'none';
+    return true;
   }
-  if (selected) {
-   // alert('validation suceessful');
-    
-  }
-}
-
+};
 //validation conditions
-
-
-function validCondition(InputCondition) {
+InputCondition.addEventListener('input', function () {
+  validCondition(this);
+});
+const validCondition = function (InputCondition) {
   if (InputCondition.checked == false) {
-      MessageErreurCondition.style.display = "inline";
-      console.log("false");
-      return false;
+    MessageErreurCondition.style.display = 'inline';
+    return false;
   } else {
-      MessageErreurCondition.style.display = 'none';
-      return true;
-  }; 
+    MessageErreurCondition.style.display = 'none';
+    return true;
+  }
+};
+
+//*************** Validation de formulaire**********************
+const validation = function () {
+  let isOK = [];
+
+  isOK.push(validName(nameInputEvent));
+  isOK.push(validLastname(LastnameIputEvent));
+  isOK.push(validMail(InputMail));
+  isOK.push(validBirthday(Inputbirthdate));
+  isOK.push(validQuantity(Inputquantity));
+  isOK.push(validLocation(Inputlocation));
+  isOK.push(validCondition(InputCondition));
+
+  if (isOK.includes(false)) {
+    confirmationValidation.style.display = 'none';
+  } else {
+    form.style.display = 'none';
+    modalbg.style.display = 'none';
+    SuccesModal();
+  }
+};
+
+function SuccesModal() {
+  successModal.style.display = 'block';
 }
+
+// ------------ Envoi du formulaire d'inscription ------------------
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
+  validation();
+});
+
+// ------- Fermer le formulaire avec le message de validation ---------
+
+//document.querySelector("btn-closed").addEventListener("click", closeModal);
