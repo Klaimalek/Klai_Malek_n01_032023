@@ -62,6 +62,7 @@ modalClose[0].addEventListener('click', closeModal);
 
 function closeModal() {
   modalbg.style.display = 'none';
+  confirmationValidation.style.display = 'none';
   successModal .style.display ='none';
 }
 
@@ -212,6 +213,7 @@ const validation = function () {
 
   if (isOK.includes(false)) {
     successModal.style.display = 'none';
+    confirmationValidation.style.displa = 'none';
   } else {
     form.style.display = 'none';
     modalbg.style.display = 'none';
