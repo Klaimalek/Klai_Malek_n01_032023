@@ -11,14 +11,14 @@ function editNav() {
 const msg = document.getElementById('.message');
 const modalbg = document.querySelector('.bground');
 const successModal = document.getElementById('bground-success');
-const sucessModalClose = document. getElementById('close-modalsucess');
+const sucessModalClose = document.getElementById('close-modalsucess');
 const modalBtn = document.querySelectorAll('.modal-btn');
 const confirmationValidation = document.getElementById('confirm-modal');
 const sucessModelCloseBtn = document.querySelector('#btn-closed'); // bouton "fermer"
 //récupérer les données de formulaire
 const formData = document.querySelectorAll('.formData');
 // récupérer le span close
-const modalClose = document.getElementsByClassName('close');
+const modalClose = document.getElementById('close-form');
 //récupérer le button c'est partie
 const modalInscription = document.getElementsByClassName('tn');
 // récupérer les champs de formulaire d'inscription
@@ -54,17 +54,10 @@ modalBtn.forEach((btn) => btn.addEventListener('click', launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = 'block';
-  
 }
 
 //close modal
-modalClose[0].addEventListener('click', closeModal);
-
-function closeModal() {
-  modalbg.style.display = 'none';
-  confirmationValidation.style.display = 'none';
-  successModal .style.display ='none';
-}
+modalClose.addEventListener('click', closeModal);
 
 // ------------ element pour l'envoi du formulaire ------------------------
 const form = document.querySelector('form[name="reserve"]');
@@ -172,11 +165,18 @@ Inputlocation.forEach((check) =>
 
 const validLocation = function (Inputlocation) {
   let itemChecked = 0;
-  Inputlocation.forEach((i) => {
-    if (i.checked) {
-      itemChecked++;
-    }
-  });
+
+  if (Inputlocation.length > 1) {
+    Inputlocation.forEach((checkbox) => {
+      if (checkbox.checked) {
+        itemChecked++;
+      }
+    });
+  }
+  if (Inputlocation.checked) {
+    itemChecked++;
+  }
+
   if (itemChecked === 0) {
     MessageErreurRadio.style.display = 'inline';
     return false;
@@ -239,14 +239,14 @@ form.addEventListener('submit', function (e) {
 sucessModelCloseBtn.addEventListener('click', function () {
   closeModalsucess(this);
 });
-const closeModalsucess = function(){
-  successModal .style.display='none';
-}
+const closeModalsucess = function () {
+  successModal.style.display = 'none';
+};
 
 sucessModalClose.addEventListener('click', closeModal);
 
 function closeModal() {
-  successModal .style.display ='none';
+  successModal.style.display = 'none';
 }
 
 //document.querySelector("btn-closed").addEventListener("click", closeModal);
