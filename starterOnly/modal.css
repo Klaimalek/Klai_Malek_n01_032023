@@ -649,10 +649,11 @@ footer {
     position: absolute;
     top: 480px;
     left: 20%;
+    
   }
   .copyrights {
     text-align: center;
-    margin-top: 5px q;
+    margin-top: 5px;
   }
 }
 
