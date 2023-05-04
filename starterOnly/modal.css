@@ -80,11 +80,14 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav {
+    .image{
+      padding-top: 15px;
+    }
+    .topnav {
     margin-bottom: 0px;
-
     display: flex;
     justify-content: space-between;
+  
   }
 
   .topnav .header-logo .image {
@@ -95,11 +98,19 @@ img {
     display: none;
   }
   .topnav a.icon {
-    padding-top: 0px;
-    padding-right: 0px;
+    margin-top: 0px;
     display: inline;
     color: #ff0000;
+   
+    
+    
   }
+  .topnav a:hover {
+  background-color: #ff0000;
+  color: #ffffff;
+  border-radius: 15px;
+ 
+}
 }
 
 @media screen and (max-width: 768px) {
@@ -229,7 +240,7 @@ main {
     width: 100%;
     height: 100%; 
     margin-top: 50px;
-    display: block;
+    /*display: block;*/
     background-color: transparent;
   }
   #confirm-modal{
@@ -253,8 +264,11 @@ main {
   text-align: center;
 }
 #btn-closed{
-  position: relative;
-  top: 600px;
+ 
+  bottom: 10px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
 }
 #msg{
 padding-left: 20px;
